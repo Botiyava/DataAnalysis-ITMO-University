@@ -1,0 +1,198 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "ancient-settlement",
+   "metadata": {},
+   "source": [
+    "# Сети прямого распространения"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "informative-orbit",
+   "metadata": {},
+   "source": [
+    "## Простая сеть. 3 входа, 3 выхода. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "surgical-internet",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "demographic-coalition",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "weights = np.array([0.1,0.2,0])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "earlier-angola",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def neural_network(input,weights):\n",
+    "    pred = input.dot(weights)\n",
+    "    return pred"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "clean-grain",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "toes = np.array([8.5])\n",
+    "wr = np.array([0.65])\n",
+    "fans = np.array([1.2])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "turned-burke",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0.9800000000000001\n"
+     ]
+    }
+   ],
+   "source": [
+    "input = np.array([toes[0], wr[0], fans[0]])\n",
+    "pred = neural_network(input,weights)\n",
+    "print(pred)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "czech-sample",
+   "metadata": {},
+   "source": [
+    "## Нейронная сеть со слоями"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "geographic-tooth",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Веса для скрытого слоя\n",
+    "weight1 = np.array([\n",
+    "    [0.1,0.2,-0.1],\n",
+    "    [-0.1, 0.1, 0.9],\n",
+    "    [0.1,0.4, 0.1]\n",
+    "]).T"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "productive-analysis",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#веса для выходного слоя\n",
+    "weight2 = np.array([\n",
+    "    [0.3,1.1, -0.3],\n",
+    "    [0.1,0.2,0.0],\n",
+    "    [0.0,1.3, 0.1]\n",
+    "]).T"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "fossil-exclusive",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "weights = [weight1, weight2 ]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "athletic-quantity",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def neural_network(input, weights):\n",
+    "    hid = input.dot(weights[0])\n",
+    "    pred = hid.dot(weights[1])\n",
+    "    return pred"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "above-perry",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "toes = np.array([8.5])\n",
+    "wr = np.array([0.65])\n",
+    "fans = np.array([1.2])\n",
+    "input = np.array([toes[0],wr[0],fans[0]])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "surrounded-aviation",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0.2135 0.145  0.5065]\n"
+     ]
+    }
+   ],
+   "source": [
+    "pred = neural_network(input,weights)\n",
+    "print(pred)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
